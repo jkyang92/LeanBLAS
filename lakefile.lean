@@ -10,8 +10,8 @@ def linkArgs := -- (#[] : Array String)
     #["-L/opt/homebrew/opt/openblas/lib",
       "-L/usr/local/opt/openblas/lib", "-lblas"]
   else -- assuming linux
-    -- #["-L/usr/lib/x86_64-linux-gnu/", "-lblas"]
-    #["/usr/lib/x86_64-linux-gnu/libblas.so"]
+    #["-L/usr/lib/", "-lblas"]
+    -- #["/usr/lib/x86_64-linux-gnu/libblas.so"]
 def inclArgs :=
   if System.Platform.isWindows then
     #[]
@@ -19,7 +19,7 @@ def inclArgs :=
     #["-I/opt/homebrew/opt/openblas/include",
       "-I/usr/local/opt/openblas/include"]
   else -- assuming linux
-    #[]
+    #["-I/usr/include/openblas"]
 
 package leanblas {
   moreLinkArgs := linkArgs
